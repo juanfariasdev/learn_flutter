@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter/pages/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -6,9 +7,12 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: "DevQuiz",
-      home: SplashPage(),
+    return MaterialApp(
+      title: "Learn Flutter",
+      home: const SplashPage(),
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(),
+      ),
     );
   }
 }
