@@ -7,15 +7,16 @@ class AppBarWidget extends PreferredSize {
   AppBarWidget({super.key})
       : super(
           preferredSize: const Size.fromHeight(200),
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
-            decoration: const BoxDecoration(color: AppColors.primary),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Row(
+            child: Stack(
+              children: [
+                Container(
+                  height: 161,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(color: AppColors.primary),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text.rich(TextSpan(
@@ -33,54 +34,61 @@ class AppBarWidget extends PreferredSize {
                         decoration: BoxDecoration(
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(100),
-                          // image: DecorationImage(
-                          //   image: const NetworkImage(
-                          //       "https://avatars.githubusercontent.com/u/77401614?v=4"),
-                          //   onError: (exception, stackTrace) {
-                          //     // Aqui você pode tratar o erro, exibir um ícone de erro ou imagem padrão
-                          //     print("Erro ao carregar imagem: $exception");
-                          //   },
-                          // ),
+                          image: DecorationImage(
+                            image: const NetworkImage(
+                                "https://avatars.githubusercontent.com/u/77401614?v=4"),
+                            onError: (exception, stackTrace) {
+                              // Aqui você pode tratar o erro, exibir um ícone de erro ou imagem padrão
+                              print("Erro ao carregar imagem: $exception");
+                            },
+                          ),
                         ),
-                        //   child: ClipRRect(
-                        //     borderRadius: BorderRadius.circular(100),
-                        //     child: Image.network(
-                        //       "https://avatars.githubusercontent.com/u/77401614?v=4",
-                        //       fit: BoxFit.cover,
-                        //       loadingBuilder: (BuildContext context, Widget child,
-                        //           ImageChunkEvent? loadingProgress) {
-                        //         if (loadingProgress == null) {
-                        //           return child;
-                        //         } else {
-                        //           return Center(
-                        //             child: CircularProgressIndicator(
-                        //               value: loadingProgress.expectedTotalBytes != null
-                        //                   ? loadingProgress.expectedTotalBytes != null
-                        //                       ? loadingProgress.cumulativeBytesLoaded /
-                        //                           (loadingProgress.expectedTotalBytes ??
-                        //                               1)
-                        //                       : null
-                        //                   : null,
-                        //             ),
-                        //           );
-                        //         }
-                        //       },
-                        //       errorBuilder: (BuildContext context, Object error,
-                        //           StackTrace? stackTrace) {
-                        //         // Aqui você pode exibir uma imagem de erro ou uma imagem padrão
-                        //         return const Icon(
-                        //           Icons.error,
-                        //           color: Colors.red,
-                        //         );
-                        //       },
-                        //     ),
-                        //   ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.network(
+                            "https://avatars.githubusercontent.com/u/77401614?v=4",
+                            fit: BoxFit.cover,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    value: loadingProgress.expectedTotalBytes !=
+                                            null
+                                        ? loadingProgress.expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                (loadingProgress
+                                                        .expectedTotalBytes ??
+                                                    1)
+                                            : null
+                                        : null,
+                                  ),
+                                );
+                              }
+                            },
+                            errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) {
+                              // Aqui você pode exibir uma imagem de erro ou uma imagem padrão
+                              return const Icon(
+                                Icons.error,
+                                color: Colors.red,
+                              );
+                            },
+                          ),
+                        ),
                       )
                     ],
                   ),
-                  const ScoreCardWidget(),
-                ],
-              ),
+                ),
+                const Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ScoreCardWidget(),
+                )
+              ],
             ),
           ),
         );
