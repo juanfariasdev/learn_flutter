@@ -9,6 +9,11 @@ class AppTextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w400,
   );
+  static final TextStyle subTitle = GoogleFonts.notoSans(
+    color: AppColors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
   static final TextStyle titleBold = GoogleFonts.notoSans(
     color: AppColors.white,

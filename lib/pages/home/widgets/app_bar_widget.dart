@@ -12,22 +12,27 @@ class AppBarWidget extends PreferredSize {
             child: Stack(
               children: [
                 Container(
-                  height: 161,
+                  height: 155,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: double.maxFinite,
                   decoration: const BoxDecoration(color: AppColors.primary),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text.rich(TextSpan(
-                          text: 'Olá ',
-                          style: AppTextStyles.title,
-                          children: [
-                            TextSpan(
-                              text: 'Juanfarias.dev',
-                              style: AppTextStyles.titleBold,
-                            ),
-                          ])),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Olá, Bem-vindo 👋',
+                            style: AppTextStyles.subTitle,
+                          ),
+                          Text(
+                            'Juanfarias.dev',
+                            style: AppTextStyles.titleBold,
+                          ),
+                        ],
+                      ),
                       Container(
                         width: 58,
                         height: 58,
@@ -85,7 +90,7 @@ class AppBarWidget extends PreferredSize {
                   ),
                 ),
                 const Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment(0, 1),
                   child: ScoreCardWidget(),
                 )
               ],
