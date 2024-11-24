@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Center(
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
