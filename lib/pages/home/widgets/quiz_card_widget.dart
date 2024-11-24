@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/app_colors.dart';
+import 'package:learn_flutter/core/app_images.dart';
 import 'package:learn_flutter/core/app_text_styles.dart';
 
 class QuizCardWidget extends StatelessWidget {
@@ -47,10 +48,10 @@ class QuizCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 40,
                     height: 40,
-                    color: Colors.red,
+                    child: Image.asset(AppImages.blocks),
                   ),
                   Text(
                     "Gerenciamento de estado",
