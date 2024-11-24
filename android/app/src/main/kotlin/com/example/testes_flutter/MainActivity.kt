@@ -1,4 +1,4 @@
-package com.jfdev.testes_flutter
+package com.jfdev.learn_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
