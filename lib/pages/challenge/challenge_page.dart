@@ -23,10 +23,10 @@ class _ChallengePageState extends State<ChallengePage> {
             description: "esse é só um texte de texto",
             urlImage: "https://picsum.photos/1200/900",
             questions: [
-              Awnser(label: "Resposta 1", isRight: true, isSelected: false),
+              Awnser(label: "Resposta 1", isRight: true, isSelected: true),
               Awnser(label: "Resposta 2", isRight: false, isSelected: false),
               Awnser(label: "Resposta 3", isRight: false, isSelected: false),
-              Awnser(label: "Resposta 4", isRight: false, isSelected: false),
+              Awnser(label: "Resposta 4", isRight: false, isSelected: true),
             ]),
       ),
     );
