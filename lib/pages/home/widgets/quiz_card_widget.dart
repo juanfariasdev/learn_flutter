@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/app_colors.dart';
 import 'package:learn_flutter/core/app_text_styles.dart';
@@ -33,8 +34,8 @@ class QuizCardWidget extends StatelessWidget {
 
         return ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: 177,
-            maxHeight: 177,
+            minHeight: 150,
+            maxHeight: 150,
             minWidth: minWidth,
             maxWidth: maxWidth,
           ),
@@ -53,20 +54,23 @@ class QuizCardWidget extends StatelessWidget {
                 children: [
                   Icon(
                     icon,
-                    size: 40,
+                    size: 36,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
+                    child: AutoSizeText(
+                      minFontSize: 14,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       label,
-                      style: AppTextStyles.heading18,
+                      style: AppTextStyles.heading16,
                     ),
                   ),
                   Row(
                     children: [
                       SizedBox(
                         width: 40, // Um tamanho fixo para o texto
-                        child: Text(
+                        child: AutoSizeText(
                           "$progress/$totalProgress",
                           style: AppTextStyles.body11,
                           overflow: TextOverflow.ellipsis,

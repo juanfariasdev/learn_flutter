@@ -39,9 +39,9 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
   );
 
-  static final TextStyle heading18 = GoogleFonts.notoSans(
+  static final TextStyle heading16 = GoogleFonts.notoSans(
     color: AppColors.black,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
