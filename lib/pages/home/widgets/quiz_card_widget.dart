@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/app_colors.dart';
 import 'package:learn_flutter/core/app_text_styles.dart';
+import 'package:learn_flutter/pages/widgets/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
   final String label;
@@ -76,16 +77,8 @@ class QuizCardWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Flexible(
-                        child: LinearProgressIndicator(
-                          value: totalProgress == 0
-                              ? 1
-                              : (progress / totalProgress).toDouble(),
-                          backgroundColor: AppColors.chartSecondary,
-                          valueColor:
-                              AlwaysStoppedAnimation(AppColors.chartPrimary),
-                        ),
-                      ),
+                      ProgressIndicatorWidget(
+                          progress: progress, totalProgress: totalProgress)
                     ],
                   ),
                 ],
