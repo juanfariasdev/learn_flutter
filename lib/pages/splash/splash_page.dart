@@ -42,8 +42,7 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) =>
-            const ChallengePage(), // Navega para a página de slide
+        builder: (context) => const HomePage(), // Navega para a página de slide
       ),
     );
   }
