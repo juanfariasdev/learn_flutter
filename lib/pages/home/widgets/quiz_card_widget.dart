@@ -1,12 +1,20 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/app_colors.dart';
-import 'package:learn_flutter/core/app_images.dart';
 import 'package:learn_flutter/core/app_text_styles.dart';
 
 class QuizCardWidget extends StatelessWidget {
-  const QuizCardWidget({super.key});
+  final String label;
+  final int progress;
+  final IconData icon;
+  final int totalProgress;
+
+  const QuizCardWidget({
+    super.key,
+    required this.label,
+    this.progress = 0,
+    this.totalProgress = 0,
+    this.icon = Icons.abc_outlined,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +25,9 @@ class QuizCardWidget extends StatelessWidget {
 
         // Calcular quantos itens cabem na largura disponível
         int maxItensRow = (constraints.maxWidth / (spacing + minWidth)).floor();
-
         spacing = (spacing * (maxItensRow - 1));
-
         double maxWidth = ((constraints.maxWidth - spacing) / maxItensRow);
 
-        log("constraints.maxWidth: ${constraints.maxWidth}");
-        log("maxItensRow: $maxItensRow");
-        log("maxWidth: $maxWidth");
         // Garantir que o maxWidth seja maior que minWidth
         maxWidth = maxWidth > minWidth ? maxWidth : minWidth;
 
@@ -48,31 +51,37 @@ class QuizCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: Image.asset(AppImages.blocks),
+                  Icon(
+                    icon,
+                    size: 40,
                   ),
-                  Text(
-                    "Gerenciamento de estado",
-                    style: AppTextStyles.heading18,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      label,
+                      style: AppTextStyles.heading18,
+                    ),
                   ),
                   Row(
                     children: [
-                      Expanded(
+                      SizedBox(
+                        width: 40, // Um tamanho fixo para o texto
                         child: Text(
-                          "3/10",
+                          "$progress/$totalProgress",
                           style: AppTextStyles.body11,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Expanded(
+                      Flexible(
                         child: LinearProgressIndicator(
-                          value: 0.3,
+                          value: totalProgress == 0
+                              ? 1
+                              : (progress / totalProgress).toDouble(),
                           backgroundColor: AppColors.chartSecondary,
                           valueColor:
                               AlwaysStoppedAnimation(AppColors.chartPrimary),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
