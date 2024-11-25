@@ -1,5 +1,6 @@
 import 'package:learn_flutter/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/pages/challenge/challenge_page.dart';
 import 'package:learn_flutter/pages/home/home_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -41,7 +42,8 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const HomePage(), // Navega para a página de slide
+        builder: (context) =>
+            const ChallengePage(), // Navega para a página de slide
       ),
     );
   }

@@ -33,7 +33,7 @@ class AwnserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
           color: isSelected ? _SelectedColorCardRight : AppColors.white,
           borderRadius: BorderRadius.circular(10),

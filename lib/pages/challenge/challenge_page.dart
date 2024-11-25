@@ -18,6 +18,7 @@ class _ChallengePageState extends State<ChallengePage> {
           child: SafeArea(child: QuestionIndicatorWidget())),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        padding: EdgeInsets.all(10),
         child: QuizWigdet(
             title: "testesss",
             description: "esse é só um texte de texto",

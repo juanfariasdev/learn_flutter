@@ -36,24 +36,25 @@ class _QuizWigdetState extends State<QuizWigdet> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(widget.title, style: AppTextStyles.heading),
           Text(widget.description, style: AppTextStyles.body),
+          SizedBox(height: 10),
           if (widget.urlImage != null && widget.urlImage!.isNotEmpty)
             Image.network(widget.urlImage!),
-          SizedBox(height: 24),
-          ListView.builder(
-            shrinkWrap:
-                true, // Opção alternativa caso queira apenas ocupar o espaço necessário
-            itemCount: widget.questions.length,
-            itemBuilder: (context, index) {
+          SizedBox(height: 10),
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runSpacing: 4,
+            children: widget.questions.map((item) {
               return AwnserWidget(
-                isRight: widget.questions[index].isRight,
-                isSelected: widget.questions[index].isSelected,
-                label: widget.questions[index].label,
+                isRight: item.isRight,
+                isSelected: item.isSelected,
+                label: item.label,
               );
-            },
-          )
+            }).toList(),
+          ),
         ],
       ),
     );
