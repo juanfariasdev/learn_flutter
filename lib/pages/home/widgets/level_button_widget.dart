@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learn_flutter/core/app_colors.dart';
+import 'package:learn_flutter/core/core.dart';
 
 // Definindo o enum de níveis
 enum Level { facil, medio, dificil, perito }

@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/core/app_text_styles.dart';
+import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/pages/challenge/widgets/awnser_widget.dart';
 import 'package:photo_view/photo_view.dart';
 

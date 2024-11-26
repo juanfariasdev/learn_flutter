@@ -8,7 +8,7 @@ class ScoreCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: AppConfig.mobilePadding),
       child: Container(
         height: 110,
         decoration: BoxDecoration(

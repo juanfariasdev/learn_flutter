@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/pages/home/widgets/app_bar_widget.dart';
 import 'package:learn_flutter/pages/home/widgets/level_button_widget.dart';
 import 'package:learn_flutter/pages/home/widgets/quiz_card_widget.dart';
@@ -140,7 +141,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding:
+                  EdgeInsets.symmetric(horizontal: AppConfig.mobilePadding),
               child: Center(
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
