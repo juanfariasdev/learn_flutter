@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
+import 'package:learn_flutter/pages/home/widgets/level_button_widget.dart';
 import 'package:learn_flutter/pages/widgets/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
@@ -8,14 +9,15 @@ class QuizCardWidget extends StatelessWidget {
   final int progress;
   final IconData icon;
   final int totalProgress;
+  final Level level;
 
-  const QuizCardWidget({
-    super.key,
-    required this.label,
-    this.progress = 0,
-    this.totalProgress = 0,
-    this.icon = Icons.abc_outlined,
-  });
+  const QuizCardWidget(
+      {super.key,
+      required this.label,
+      this.progress = 0,
+      this.totalProgress = 0,
+      this.icon = Icons.abc_outlined,
+      this.level = Level.facil});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,15 @@ class QuizCardWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    icon,
-                    size: 36,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Icon(
+                        icon,
+                        size: 36,
+                      ),
+                      LevelButtonWidget(level: level),
+                    ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
