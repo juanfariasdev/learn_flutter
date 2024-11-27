@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/pages/challenge/widgets/awnser_widget.dart';
+import 'package:learn_flutter/pages/widgets/next_button_widget.dart';
 import 'package:photo_view/photo_view.dart';
 
 class Awnser {
@@ -121,6 +122,26 @@ class _QuizWigdetState extends State<QuizWigdet> {
               );
             }).toList(),
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              children: [
+                Expanded(
+                    child: NextButtonWidget.white(
+                  label: "Pular",
+                  onTap: () => {},
+                )),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                    child: NextButtonWidget.green(
+                  label: "Confirmar",
+                  onTap: () => {},
+                )),
+              ],
+            ),
+          )
         ],
       ),
     );
