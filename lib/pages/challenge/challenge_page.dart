@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/models/awnser_model.dart';
 import 'package:learn_flutter/models/question_model.dart';
 import 'package:learn_flutter/pages/challenge/widgets/question_indicator_widget.dart';
 import 'package:learn_flutter/pages/challenge/widgets/question_wigdet.dart';
+import 'package:learn_flutter/pages/widgets/next_button_widget.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
@@ -13,24 +15,33 @@ class ChallengePage extends StatefulWidget {
 }
 
 class _ChallengePageState extends State<ChallengePage> {
-  int currentQuestionIndex = 0; // Índice da questão atual
+  int currentQuestionIndex = 0;
+  AnswerModel? selectedAnswer;
+
+  void _selectAnswer(AnswerModel? answer) {
+    setState(() {
+      selectedAnswer = answer;
+    });
+  }
 
   void _nextQuestion() {
     if (currentQuestionIndex < widget.questions.length - 1) {
       setState(() {
-        currentQuestionIndex++; // Avança para a próxima questão
+        currentQuestionIndex++;
       });
     } else {
-      // Lógica para finalizar o desafio
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Você concluiu todas as perguntas!")),
       );
     }
   }
 
-  void _skipQuestion() {
-    // Pular a questão sem confirmar a resposta
-    _nextQuestion();
+  void _previousQuestion() {
+    if (currentQuestionIndex > 0) {
+      setState(() {
+        currentQuestionIndex--;
+      });
+    }
   }
 
   @override
@@ -52,36 +63,34 @@ class _ChallengePageState extends State<ChallengePage> {
           children: [
             QuestionWidget(
               question: widget.questions[currentQuestionIndex],
-              onConfirm: _nextQuestion, // Avança ao confirmar
+              onAnswerSelected: _selectAnswer,
+              isConfirmed: false, // Não estamos usando confirmação por enquanto
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _skipQuestion,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                      ),
-                      child: Text("Pular"),
-                    ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                // Botão Voltar (Desabilitado se for a primeira questão)
+                Expanded(
+                  child: NextButtonWidget.white(
+                    label: "Voltar",
+                    onTap: _previousQuestion,
+                    isDisabled: currentQuestionIndex == 0,
                   ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Chama a função de confirmar (só para referência)
-                        _nextQuestion();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                      ),
-                      child: Text("Confirmar"),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(width: 10),
+                // Botão de Pular / Próximo
+                Expanded(
+                  child: selectedAnswer == null
+                      ? NextButtonWidget.white(
+                          label: "Pular",
+                          onTap: _nextQuestion,
+                        )
+                      : NextButtonWidget.green(
+                          label: "Próximo",
+                          onTap: _nextQuestion,
+                        ),
+                ),
+              ],
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/topic_model.dart';
+import 'package:learn_flutter/pages/challenge/challenge_page.dart'; // Importe a ChallengePage
 import 'package:learn_flutter/pages/widgets/progress_indicator_widget.dart';
 
 class TopicListWidget extends StatelessWidget {
@@ -14,16 +15,22 @@ class TopicListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalProgress =
-        topic.challenges.length; // Corrigido: Removido o `const`
+    final totalProgress = topic.challenges.length; // Removido o `const`
     final currentProgress = topic.challenges
-        .where(
-            (question) => question.isSelected) // Exemplo: questões respondidas
+        .where((question) =>
+            question.selectedAnswer != null) // Exemplo: questões respondidas
         .length;
 
     return GestureDetector(
       onTap: () {
         print('Abrindo tópico: ${topic.title}');
+        // Navegação para a ChallengePage
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChallengePage(questions: topic.challenges),
+          ),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -71,11 +78,9 @@ class TopicListWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Expanded(
-                    child: ProgressIndicatorWidget(
-                      progress: currentProgress,
-                      totalProgress: totalProgress,
-                    ),
+                  ProgressIndicatorWidget(
+                    progress: currentProgress,
+                    totalProgress: totalProgress,
                   ),
                 ],
               ),

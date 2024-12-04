@@ -5,43 +5,35 @@ import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/awnser_model.dart';
 import 'package:learn_flutter/models/question_model.dart';
 import 'package:learn_flutter/pages/challenge/widgets/awnser_widget.dart';
-import 'package:learn_flutter/pages/widgets/next_button_widget.dart';
 import 'package:photo_view/photo_view.dart';
 
 class QuestionWidget extends StatefulWidget {
   final QuestionModel question;
+  final Function(AnswerModel?)
+      onAnswerSelected; // Função callback para selecionar a resposta
+  final bool isConfirmed;
 
-  const QuestionWidget({super.key, required this.question});
+  const QuestionWidget({
+    super.key,
+    required this.question,
+    required this.onAnswerSelected, // Passa a função de seleção de resposta
+    required this.isConfirmed, // Passa o estado de confirmação
+  });
 
   @override
   _QuestionWidgetState createState() => _QuestionWidgetState();
 }
 
 class _QuestionWidgetState extends State<QuestionWidget> {
-  bool isConfirmed = false; // Define se o usuário confirmou as respostas
   AnswerModel? selectedAnswer; // Resposta selecionada pelo usuário
 
   void _selectAnswer(AnswerModel answer) {
-    if (!isConfirmed) {
-      // Só permite a seleção se não estiver confirmado
+    if (!widget.isConfirmed) {
       setState(() {
         selectedAnswer = answer;
       });
-    }
-  }
-
-  void _confirmAnswer() {
-    if (selectedAnswer != null) {
-      // Confirma a seleção
-      setState(() {
-        isConfirmed = true;
-        widget.question.selectedAnswer = selectedAnswer;
-      });
-    } else {
-      // Opcional: Mostrar mensagem caso nenhuma alternativa esteja selecionada
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Selecione uma resposta antes de confirmar!")),
-      );
+      widget.onAnswerSelected(
+          answer); // Chama a função de callback para informar o pai
     }
   }
 
@@ -52,41 +44,32 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       builder: (BuildContext context) {
         return Dialog(
           insetPadding: EdgeInsets.all(0),
-          backgroundColor:
-              Colors.transparent, // Torna o fundo do diálogo transparente
+          backgroundColor: Colors.transparent,
           child: Stack(
             children: [
-              // Aplicando o efeito de Blur no fundo
               Positioned.fill(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                      sigmaX: 5.0, sigmaY: 5.0), // Intensidade do blur
+                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                   child: Container(
-                    color: Colors.black
-                        .withOpacity(0.5), // Fundo com opacidade para o blur
+                    color: Colors.black.withOpacity(0.5),
                   ),
                 ),
               ),
-              // Exibindo a imagem com zoom
               Column(
                 children: [
-                  // Botão "X" para fechar o diálogo
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
                       icon: Icon(Icons.close, color: Colors.white),
                       onPressed: () {
-                        Navigator.of(context).pop(); // Fecha o diálogo
+                        Navigator.of(context).pop();
                       },
                     ),
                   ),
-                  // Exibindo a imagem com zoom
                   Expanded(
                     child: PhotoView(
-                      backgroundDecoration: BoxDecoration(
-                        color: Colors
-                            .transparent, // Removendo o fundo do PhotoView
-                      ),
+                      backgroundDecoration:
+                          BoxDecoration(color: Colors.transparent),
                       imageProvider: NetworkImage(widget.question.urlImage!),
                       minScale: PhotoViewComputedScale.contained,
                       maxScale: PhotoViewComputedScale.covered,
@@ -113,12 +96,11 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           if (widget.question.urlImage != null &&
               widget.question.urlImage!.isNotEmpty)
             GestureDetector(
-              onTap:
-                  _openImageWithBlur, // Ao clicar, abre a imagem com blur no fundo
+              onTap: _openImageWithBlur,
               child: Image.network(
                 widget.question.urlImage!,
-                width: double.infinity, // A imagem agora ocupa toda a largura
-                fit: BoxFit.cover, // Ajusta a imagem para cobrir toda a largura
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
           SizedBox(height: 10),
@@ -132,35 +114,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   label: item.label,
                   isRight: item.isRight,
                   isSelected: selectedAnswer == item,
-                  isConfirmed: isConfirmed,
+                  isConfirmed:
+                      widget.isConfirmed, // Passa o estado de confirmação
                   onTap: () {},
                 ),
               );
             }).toList(),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: NextButtonWidget.white(
-                    label: "Pular",
-                    onTap: () => {
-                      // Lógica para pular a pergunta (opcional)
-                    },
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: NextButtonWidget.green(
-                    label: "Confirmar",
-                    onTap: _confirmAnswer, // Confirma a seleção
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

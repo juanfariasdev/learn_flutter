@@ -20,7 +20,7 @@ class QuizCardWidget extends StatelessWidget {
       onTap: () {
         // Navega para a TopicPage ao clicar
 
-        if (quiz.topics != null && quiz.topics!.isNotEmpty) {
+        if (quiz.topics.isNotEmpty) {
           Navigator.push(
             context,
             MaterialPageRoute(

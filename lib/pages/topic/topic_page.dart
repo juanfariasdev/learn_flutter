@@ -28,13 +28,11 @@ class TopicPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final TopicModel topic = quiz.topics[index];
 
-          return Column(
-            children: [
-              TopicListWidget(
-                topic: topic,
-              ),
-              SizedBox(height: 10),
-            ],
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: TopicListWidget(
+              topic: topic,
+            ),
           );
         },
       ),
