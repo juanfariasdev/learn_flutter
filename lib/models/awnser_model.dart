@@ -1,11 +1,9 @@
 class AnswerModel {
-  final String label;
-  final bool isRight;
-  final bool isSelected;
+  final String label; // Texto da alternativa
+  final bool isRight; // Indica se a alternativa é correta
 
   AnswerModel({
     required this.label,
     this.isRight = false,
-    this.isSelected = false,
   });
 }

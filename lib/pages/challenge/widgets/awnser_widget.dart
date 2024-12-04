@@ -2,69 +2,88 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 
 class AwnserWidget extends StatelessWidget {
-  final String label;
-  final bool isRight;
-  final bool isSelected;
+  final String label; // Texto da alternativa
+  final bool isRight; // Define se a alternativa está correta
+  final bool isSelected; // Define se a alternativa foi selecionada
+  final bool isConfirmed; // Define se a "prova" foi confirmada
+  final VoidCallback onTap; // Função chamada ao clicar na alternativa
 
   const AwnserWidget({
     super.key,
     required this.label,
     this.isRight = false,
     this.isSelected = false,
+    this.isConfirmed = false,
+    required this.onTap,
   });
 
-  Color get _SelectedColorRight =>
-      isRight ? AppColors.darkGreen : AppColors.darkRed;
+  // Cores dinâmicas com base nos estados
+  Color get _SelectedColorCard {
+    if (isConfirmed) {
+      return isRight ? AppColors.lightGreen : AppColors.lightRed;
+    }
+    return isSelected ? AppColors.lightGrey : AppColors.white;
+  }
 
-  Color get _SelectedBorderRight =>
-      isRight ? AppColors.lightGreen : AppColors.lightRed;
+  Color get _SelectedBorderCard {
+    if (isConfirmed) {
+      return isRight ? AppColors.green : AppColors.red;
+    }
+    return isSelected ? AppColors.grey : AppColors.border;
+  }
 
-  Color get _SelectedColorCardRight =>
-      isRight ? AppColors.lightGreen : AppColors.lightRed;
+  TextStyle get _SelectedTextStyle {
+    if (isConfirmed) {
+      return isRight ? AppTextStyles.bodyDarkGreen : AppTextStyles.bodyDarkRed;
+    }
+    return isSelected ? AppTextStyles.bodyBold : AppTextStyles.body;
+  }
 
-  Color get _SelectedBorderCardRight =>
-      isRight ? AppColors.green : AppColors.red;
-
-  TextStyle get _SelectedTextStyleRight =>
-      isRight ? AppTextStyles.bodyDarkGreen : AppTextStyles.bodyDarkRed;
-
-  IconData get _SelectedIconRight => isRight ? Icons.check : Icons.close;
+  IconData? get _SelectedIcon {
+    if (isConfirmed) {
+      return isRight ? Icons.check : Icons.close;
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      decoration: BoxDecoration(
-          color: isSelected ? _SelectedColorCardRight : AppColors.white,
+    return GestureDetector(
+      onTap: isConfirmed
+          ? null
+          : onTap, // Só permite seleção se não foi confirmado
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+          color: _SelectedColorCard,
           borderRadius: BorderRadius.circular(10),
-          border: Border.fromBorderSide(BorderSide(
-              color:
-                  isSelected ? _SelectedBorderCardRight : AppColors.border))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: isSelected ? _SelectedTextStyleRight : AppTextStyles.body,
-          ),
-          Container(
-            width: 24,
-            height: 24,
-            decoration: BoxDecoration(
-              color: isSelected ? _SelectedColorRight : AppColors.white,
-              borderRadius: BorderRadius.circular(500),
-              border: Border.fromBorderSide(BorderSide(
-                  color: isSelected ? _SelectedBorderRight : AppColors.white)),
+          border: Border.fromBorderSide(BorderSide(color: _SelectedBorderCard)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              label,
+              style: _SelectedTextStyle,
             ),
-            child: isSelected
-                ? Icon(
-                    _SelectedIconRight,
-                    size: 16,
-                    color: isSelected ? AppColors.white : AppColors.darkGreen,
-                  )
-                : null,
-          )
-        ],
+            if (isConfirmed) // Mostra o ícone só se a "prova" estiver confirmada
+              Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: isConfirmed
+                      ? (isRight ? AppColors.green : AppColors.red)
+                      : AppColors.white,
+                  borderRadius: BorderRadius.circular(500),
+                ),
+                child: Icon(
+                  _SelectedIcon,
+                  size: 16,
+                  color: AppColors.white,
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

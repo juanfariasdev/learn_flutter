@@ -3,28 +3,48 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/awnser_model.dart';
+import 'package:learn_flutter/models/question_model.dart';
 import 'package:learn_flutter/pages/challenge/widgets/awnser_widget.dart';
 import 'package:learn_flutter/pages/widgets/next_button_widget.dart';
 import 'package:photo_view/photo_view.dart';
 
-class QuizWigdet extends StatefulWidget {
-  final String title;
-  final String description;
-  final String? urlImage;
-  final List<AnswerModel> questions;
+class QuestionWidget extends StatefulWidget {
+  final QuestionModel question;
 
-  const QuizWigdet(
-      {super.key,
-      required this.title,
-      required this.description,
-      this.urlImage,
-      required this.questions});
+  const QuestionWidget({super.key, required this.question});
 
   @override
-  _QuizWigdetState createState() => _QuizWigdetState();
+  _QuestionWidgetState createState() => _QuestionWidgetState();
 }
 
-class _QuizWigdetState extends State<QuizWigdet> {
+class _QuestionWidgetState extends State<QuestionWidget> {
+  bool isConfirmed = false; // Define se o usuário confirmou as respostas
+  AnswerModel? selectedAnswer; // Resposta selecionada pelo usuário
+
+  void _selectAnswer(AnswerModel answer) {
+    if (!isConfirmed) {
+      // Só permite a seleção se não estiver confirmado
+      setState(() {
+        selectedAnswer = answer;
+      });
+    }
+  }
+
+  void _confirmAnswer() {
+    if (selectedAnswer != null) {
+      // Confirma a seleção
+      setState(() {
+        isConfirmed = true;
+        widget.question.selectedAnswer = selectedAnswer;
+      });
+    } else {
+      // Opcional: Mostrar mensagem caso nenhuma alternativa esteja selecionada
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Selecione uma resposta antes de confirmar!")),
+      );
+    }
+  }
+
   void _openImageWithBlur() {
     showDialog(
       context: context,
@@ -67,7 +87,7 @@ class _QuizWigdetState extends State<QuizWigdet> {
                         color: Colors
                             .transparent, // Removendo o fundo do PhotoView
                       ),
-                      imageProvider: NetworkImage(widget.urlImage!),
+                      imageProvider: NetworkImage(widget.question.urlImage!),
                       minScale: PhotoViewComputedScale.contained,
                       maxScale: PhotoViewComputedScale.covered,
                     ),
@@ -87,15 +107,16 @@ class _QuizWigdetState extends State<QuizWigdet> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: AppTextStyles.heading),
-          Text(widget.description, style: AppTextStyles.body),
+          Text(widget.question.title, style: AppTextStyles.heading),
+          Text(widget.question.description, style: AppTextStyles.body),
           SizedBox(height: 10),
-          if (widget.urlImage != null && widget.urlImage!.isNotEmpty)
+          if (widget.question.urlImage != null &&
+              widget.question.urlImage!.isNotEmpty)
             GestureDetector(
               onTap:
                   _openImageWithBlur, // Ao clicar, abre a imagem com blur no fundo
               child: Image.network(
-                widget.urlImage!,
+                widget.question.urlImage!,
                 width: double.infinity, // A imagem agora ocupa toda a largura
                 fit: BoxFit.cover, // Ajusta a imagem para cobrir toda a largura
               ),
@@ -104,11 +125,16 @@ class _QuizWigdetState extends State<QuizWigdet> {
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             runSpacing: 4,
-            children: widget.questions.map((item) {
-              return AwnserWidget(
-                isRight: item.isRight,
-                isSelected: item.isSelected,
-                label: item.label,
+            children: widget.question.answers.map((item) {
+              return GestureDetector(
+                onTap: () => _selectAnswer(item),
+                child: AwnserWidget(
+                  label: item.label,
+                  isRight: item.isRight,
+                  isSelected: selectedAnswer == item,
+                  isConfirmed: isConfirmed,
+                  onTap: () {},
+                ),
               );
             }).toList(),
           ),
@@ -117,21 +143,25 @@ class _QuizWigdetState extends State<QuizWigdet> {
             child: Row(
               children: [
                 Expanded(
-                    child: NextButtonWidget.white(
-                  label: "Pular",
-                  onTap: () => {},
-                )),
+                  child: NextButtonWidget.white(
+                    label: "Pular",
+                    onTap: () => {
+                      // Lógica para pular a pergunta (opcional)
+                    },
+                  ),
+                ),
                 SizedBox(
                   width: 10,
                 ),
                 Expanded(
-                    child: NextButtonWidget.green(
-                  label: "Confirmar",
-                  onTap: () => {},
-                )),
+                  child: NextButtonWidget.green(
+                    label: "Confirmar",
+                    onTap: _confirmAnswer, // Confirma a seleção
+                  ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

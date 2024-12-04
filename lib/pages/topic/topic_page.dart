@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
 import 'package:learn_flutter/models/topic_model.dart';
+import 'package:learn_flutter/pages/topic/widgets/topic_list_widget.dart';
 
 class TopicPage extends StatelessWidget {
   final QuizModel quiz;
@@ -14,27 +15,26 @@ class TopicPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           quiz.label,
-          style: AppTextStyles.subTitle,
+          style: AppTextStyles.title,
         ),
         backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
       ),
       body: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: quiz.topics!.length,
+        padding: EdgeInsets.symmetric(
+            horizontal: AppConfig.mobilePadding,
+            vertical: AppConfig.mobilePadding),
+        itemCount: quiz.topics.length,
         itemBuilder: (context, index) {
-          final TopicModel topic = quiz.topics![index];
-          return Card(
-            margin: const EdgeInsets.only(bottom: 16),
-            child: ListTile(
-              title: Text(
-                topic.title,
-                style: AppTextStyles.body,
+          final TopicModel topic = quiz.topics[index];
+
+          return Column(
+            children: [
+              TopicListWidget(
+                topic: topic,
               ),
-              onTap: () {
-                // Aqui você pode implementar a navegação para uma página específica do tópico.
-                print('Abrindo tópico: ${topic.title}');
-              },
-            ),
+              SizedBox(height: 10),
+            ],
           );
         },
       ),
