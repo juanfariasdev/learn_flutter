@@ -1,9 +1,9 @@
-class AwnserModel {
+class AnswerModel {
   final String label;
   final bool isRight;
   final bool isSelected;
 
-  AwnserModel({
+  AnswerModel({
     required this.label,
     this.isRight = false,
     this.isSelected = false,

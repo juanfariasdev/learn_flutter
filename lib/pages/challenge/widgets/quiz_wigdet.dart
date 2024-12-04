@@ -11,7 +11,7 @@ class QuizWigdet extends StatefulWidget {
   final String title;
   final String description;
   final String? urlImage;
-  final List<AwnserModel> questions;
+  final List<AnswerModel> questions;
 
   const QuizWigdet(
       {super.key,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/models/challenge_model.dart';
+import 'package:learn_flutter/models/question_model.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
 import 'package:learn_flutter/models/topic_model.dart';
 import 'package:learn_flutter/pages/home/widgets/level_button_widget.dart';
@@ -15,30 +15,30 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Variáveis e Tipos de Dados',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'O que é uma variável?',
             description: 'Aprenda o conceito de variáveis e tipos de dados.',
-            questions: [],
+            answers: [],
           ),
-          ChallengeModel(
+          QuestionModel(
             title: 'Operadores Matemáticos',
             description: 'Entenda como usar operadores como +, -, *, e /.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
       TopicModel(
         title: 'Estruturas de Controle',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Condicionais',
             description: 'Aprenda a usar if, else e switch.',
-            questions: [],
+            answers: [],
           ),
-          ChallengeModel(
+          QuestionModel(
             title: 'Loops',
             description: 'Descubra como usar for, while e do-while.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -54,15 +54,15 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Instalação e Configuração',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Instalação do Flutter',
             description: 'Saiba como instalar o Flutter no seu computador.',
-            questions: [],
+            answers: [],
           ),
-          ChallengeModel(
+          QuestionModel(
             title: 'Configuração de IDEs',
             description: 'Aprenda a configurar o VSCode e o Android Studio.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -78,15 +78,15 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Conceitos Básicos',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Primeiro Programa',
             description: 'Escreva seu primeiro programa em Dart.',
-            questions: [],
+            answers: [],
           ),
-          ChallengeModel(
+          QuestionModel(
             title: 'Tipos de Dados',
             description: 'Explore os principais tipos de dados em Dart.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -102,10 +102,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Funções e Métodos',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Declarando Funções',
             description: 'Aprenda a criar e usar funções em Dart.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -121,10 +121,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Widgets Fundamentais',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'O que são Widgets?',
             description: 'Entenda a base de toda interface no Flutter.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -140,10 +140,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Layout Responsivo',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Row e Column',
             description: 'Aprenda a alinhar widgets em linhas e colunas.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -159,10 +159,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Estados Simples',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Stateful Widgets',
             description: 'Trabalhe com widgets dinâmicos.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -178,10 +178,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Rotas Básicas',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Navegação Simples',
             description: 'Navegue entre telas com Navigator.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -197,10 +197,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Gestos e Eventos',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Interações Simples',
             description: 'Trabalhe com gestos como toque e arrastar.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -216,10 +216,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Salvando Dados',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'SharedPreferences',
             description: 'Armazene dados de forma persistente no app.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -235,10 +235,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Conexão com o Firebase',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Configuração Inicial',
             description: 'Aprenda a configurar o Firebase no Flutter.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -254,10 +254,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Animações Simples',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Animações com AnimatedContainer',
             description: 'Crie animações básicas usando widgets nativos.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -273,10 +273,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Depuração de Código',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Debugging com Breakpoints',
             description: 'Identifique problemas no código com eficiência.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -292,10 +292,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Publicação na Play Store',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Configuração para Publicação',
             description: 'Prepare o app para ser publicado.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -311,10 +311,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Padrões de Projeto',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Arquitetura Limpa',
             description: 'Organize seu código para facilitar manutenção.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -330,10 +330,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Melhorando Performance',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Widgets Eficientes',
             description: 'Aprenda a otimizar o desempenho de widgets.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),
@@ -349,10 +349,10 @@ List<QuizModel> learningPath = [
       TopicModel(
         title: 'Incluindo Acessibilidade',
         challenges: [
-          ChallengeModel(
+          QuestionModel(
             title: 'Widgets Acessíveis',
             description: 'Crie interfaces inclusivas para todos.',
-            questions: [],
+            answers: [],
           ),
         ],
       ),

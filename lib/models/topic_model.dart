@@ -1,8 +1,8 @@
-import 'package:learn_flutter/models/challenge_model.dart';
+import 'package:learn_flutter/models/question_model.dart';
 
 class TopicModel {
   final String title;
-  final List<ChallengeModel> challenges;
+  final List<QuestionModel> challenges;
 
   TopicModel({
     required this.title,
