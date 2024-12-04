@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/models/awnser_model.dart';
 import 'package:learn_flutter/pages/challenge/widgets/question_indicator_widget.dart';
 import 'package:learn_flutter/pages/challenge/widgets/quiz_wigdet.dart';
 
@@ -24,10 +25,13 @@ class _ChallengePageState extends State<ChallengePage> {
             description: "esse é só um texte de texto",
             urlImage: "https://picsum.photos/1200/900",
             questions: [
-              Awnser(label: "Resposta 1", isRight: true, isSelected: true),
-              Awnser(label: "Resposta 2", isRight: false, isSelected: false),
-              Awnser(label: "Resposta 3", isRight: false, isSelected: false),
-              Awnser(label: "Resposta 4", isRight: false, isSelected: true),
+              AwnserModel(label: "Resposta 1", isRight: true, isSelected: true),
+              AwnserModel(
+                  label: "Resposta 2", isRight: false, isSelected: false),
+              AwnserModel(
+                  label: "Resposta 3", isRight: false, isSelected: false),
+              AwnserModel(
+                  label: "Resposta 4", isRight: false, isSelected: true),
             ]),
       ),
     );

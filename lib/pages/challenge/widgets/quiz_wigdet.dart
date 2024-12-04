@@ -1,27 +1,17 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
+import 'package:learn_flutter/models/awnser_model.dart';
 import 'package:learn_flutter/pages/challenge/widgets/awnser_widget.dart';
 import 'package:learn_flutter/pages/widgets/next_button_widget.dart';
 import 'package:photo_view/photo_view.dart';
-
-class Awnser {
-  final String label;
-  final bool isRight;
-  final bool isSelected;
-
-  Awnser({
-    required this.label,
-    this.isRight = false,
-    this.isSelected = false,
-  });
-}
 
 class QuizWigdet extends StatefulWidget {
   final String title;
   final String description;
   final String? urlImage;
-  final List<Awnser> questions;
+  final List<AwnserModel> questions;
 
   const QuizWigdet(
       {super.key,

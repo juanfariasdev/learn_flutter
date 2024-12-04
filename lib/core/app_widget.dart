@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Learn Flutter",
-      home: const SplashPage(),
+      home: SplashPage(),
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
