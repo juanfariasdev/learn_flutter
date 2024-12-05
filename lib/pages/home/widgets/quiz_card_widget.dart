@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/core/app_routes.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
 import 'package:learn_flutter/pages/home/widgets/level_button_widget.dart';
-import 'package:learn_flutter/pages/topic/topic_page.dart';
 import 'package:learn_flutter/pages/widgets/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
@@ -21,13 +21,10 @@ class QuizCardWidget extends StatelessWidget {
         // Navega para a TopicPage ao clicar
 
         if (quiz.topics.isNotEmpty) {
-          Navigator.push(
+          Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              builder: (context) => TopicPage(
-                quiz: quiz,
-              ), // Passa o quiz selecionado
-            ),
+            AppRoutes.topic,
+            arguments: quiz, // Passa o quiz selecionado
           );
         }
       },

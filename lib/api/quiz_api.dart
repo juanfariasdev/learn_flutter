@@ -20,7 +20,7 @@ List<QuizModel> learningPath = [
             title: 'O que é uma variável?',
             description: 'Aprenda o conceito de variáveis e tipos de dados.',
             answers: [
-              AnswerModel(label: "label", isRight: true),
+              AnswerModel(label: "label correto", isRight: true),
               AnswerModel(label: "label"),
               AnswerModel(label: "label"),
               AnswerModel(label: "label"),
@@ -29,7 +29,22 @@ List<QuizModel> learningPath = [
           QuestionModel(
             title: 'Operadores Matemáticos',
             description: 'Entenda como usar operadores como +, -, *, e /.',
-            answers: [],
+            answers: [
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label correto", isRight: true),
+              AnswerModel(label: "label"),
+            ],
+          ),
+          QuestionModel(
+            title: 'eita Matemáticos',
+            description: 'Entenda como usar operadores como +, -, *, e /.',
+            answers: [
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label correto", isRight: true),
+              AnswerModel(label: "label"),
+            ],
           ),
         ],
       ),

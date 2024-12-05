@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learn_flutter/core/app_routes.dart';
 import 'package:learn_flutter/pages/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: "Learn Flutter",
       home: SplashPage(),
+      onGenerateRoute: AppRoutes.generateRoute,
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),

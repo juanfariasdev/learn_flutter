@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/core/app_routes.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/topic_model.dart';
-import 'package:learn_flutter/pages/challenge/challenge_page.dart'; // Importe a ChallengePage
 import 'package:learn_flutter/pages/widgets/progress_indicator_widget.dart';
 
 class TopicListWidget extends StatelessWidget {
@@ -25,11 +25,13 @@ class TopicListWidget extends StatelessWidget {
       onTap: () {
         print('Abrindo tópico: ${topic.title}');
         // Navegação para a ChallengePage
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => ChallengePage(questions: topic.challenges),
-          ),
+          AppRoutes.challenge,
+          arguments: {
+            'questions': topic.challenges,
+            'currentQuestionIndex': 0
+          }, // Passa o tópico selecionado
         );
       },
       child: Container(

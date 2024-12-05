@@ -10,7 +10,7 @@ import 'package:photo_view/photo_view.dart';
 class QuestionWidget extends StatefulWidget {
   final QuestionModel question;
   final AnswerModel? selectedAnswer;
-  final Function(AnswerModel?) onAnswerSelected;
+  final Function(AnswerModel) onAnswerSelected;
   final bool isConfirmed;
 
   const QuestionWidget(
