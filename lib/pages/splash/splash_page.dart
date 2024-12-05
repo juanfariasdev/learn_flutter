@@ -1,6 +1,5 @@
-import 'package:learn_flutter/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/pages/challenge/challenge_page.dart';
+import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/pages/home/home_page.dart';
 
 class SplashPage extends StatefulWidget {

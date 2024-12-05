@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/models/awnser_model.dart';
 import 'package:learn_flutter/models/question_model.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
 import 'package:learn_flutter/models/topic_model.dart';
@@ -18,7 +19,12 @@ List<QuizModel> learningPath = [
           QuestionModel(
             title: 'O que é uma variável?',
             description: 'Aprenda o conceito de variáveis e tipos de dados.',
-            answers: [],
+            answers: [
+              AnswerModel(label: "label", isRight: true),
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label"),
+              AnswerModel(label: "label"),
+            ],
           ),
           QuestionModel(
             title: 'Operadores Matemáticos',
@@ -57,7 +63,9 @@ List<QuizModel> learningPath = [
           QuestionModel(
             title: 'Instalação do Flutter',
             description: 'Saiba como instalar o Flutter no seu computador.',
-            answers: [],
+            answers: [
+              AnswerModel(label: 'label'),
+            ],
           ),
           QuestionModel(
             title: 'Configuração de IDEs',

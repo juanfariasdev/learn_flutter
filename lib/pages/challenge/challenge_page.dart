@@ -16,11 +16,11 @@ class ChallengePage extends StatefulWidget {
 
 class _ChallengePageState extends State<ChallengePage> {
   int currentQuestionIndex = 0;
-  AnswerModel? selectedAnswer;
+  AnswerModel? selectedAnswer; // Resposta selecionada
 
   void _selectAnswer(AnswerModel? answer) {
     setState(() {
-      selectedAnswer = answer;
+      selectedAnswer = answer; // Atualiza a resposta selecionada
     });
   }
 
@@ -64,6 +64,7 @@ class _ChallengePageState extends State<ChallengePage> {
             QuestionWidget(
               question: widget.questions[currentQuestionIndex],
               onAnswerSelected: _selectAnswer,
+              selectedAnswer: selectedAnswer,
               isConfirmed: false, // Não estamos usando confirmação por enquanto
             ),
             SizedBox(height: 20),

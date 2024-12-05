@@ -9,33 +9,23 @@ import 'package:photo_view/photo_view.dart';
 
 class QuestionWidget extends StatefulWidget {
   final QuestionModel question;
-  final Function(AnswerModel?)
-      onAnswerSelected; // Função callback para selecionar a resposta
+  final AnswerModel? selectedAnswer;
+  final Function(AnswerModel?) onAnswerSelected;
   final bool isConfirmed;
 
-  const QuestionWidget({
-    super.key,
-    required this.question,
-    required this.onAnswerSelected, // Passa a função de seleção de resposta
-    required this.isConfirmed, // Passa o estado de confirmação
-  });
+  const QuestionWidget(
+      {super.key,
+      required this.question,
+      required this.selectedAnswer,
+      required this.onAnswerSelected,
+      required this.isConfirmed});
 
   @override
   _QuestionWidgetState createState() => _QuestionWidgetState();
 }
 
 class _QuestionWidgetState extends State<QuestionWidget> {
-  AnswerModel? selectedAnswer; // Resposta selecionada pelo usuário
-
-  void _selectAnswer(AnswerModel answer) {
-    if (!widget.isConfirmed) {
-      setState(() {
-        selectedAnswer = answer;
-      });
-      widget.onAnswerSelected(
-          answer); // Chama a função de callback para informar o pai
-    }
-  }
+  bool isConfirmed = false; // Define se o usuário confirmou as respostas
 
   void _openImageWithBlur() {
     showDialog(
@@ -44,32 +34,41 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       builder: (BuildContext context) {
         return Dialog(
           insetPadding: EdgeInsets.all(0),
-          backgroundColor: Colors.transparent,
+          backgroundColor:
+              Colors.transparent, // Torna o fundo do diálogo transparente
           child: Stack(
             children: [
+              // Aplicando o efeito de Blur no fundo
               Positioned.fill(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                  filter: ImageFilter.blur(
+                      sigmaX: 5.0, sigmaY: 5.0), // Intensidade do blur
                   child: Container(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black
+                        .withOpacity(0.5), // Fundo com opacidade para o blur
                   ),
                 ),
               ),
+              // Exibindo a imagem com zoom
               Column(
                 children: [
+                  // Botão "X" para fechar o diálogo
                   Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
                       icon: Icon(Icons.close, color: Colors.white),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pop(); // Fecha o diálogo
                       },
                     ),
                   ),
+                  // Exibindo a imagem com zoom
                   Expanded(
                     child: PhotoView(
-                      backgroundDecoration:
-                          BoxDecoration(color: Colors.transparent),
+                      backgroundDecoration: BoxDecoration(
+                        color: Colors
+                            .transparent, // Removendo o fundo do PhotoView
+                      ),
                       imageProvider: NetworkImage(widget.question.urlImage!),
                       minScale: PhotoViewComputedScale.contained,
                       maxScale: PhotoViewComputedScale.covered,
@@ -96,11 +95,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           if (widget.question.urlImage != null &&
               widget.question.urlImage!.isNotEmpty)
             GestureDetector(
-              onTap: _openImageWithBlur,
+              onTap:
+                  _openImageWithBlur, // Ao clicar, abre a imagem com blur no fundo
               child: Image.network(
                 widget.question.urlImage!,
-                width: double.infinity,
-                fit: BoxFit.cover,
+                width: double.infinity, // A imagem agora ocupa toda a largura
+                fit: BoxFit.cover, // Ajusta a imagem para cobrir toda a largura
               ),
             ),
           SizedBox(height: 10),
@@ -108,16 +108,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             crossAxisAlignment: WrapCrossAlignment.center,
             runSpacing: 4,
             children: widget.question.answers.map((item) {
-              return GestureDetector(
-                onTap: () => _selectAnswer(item),
-                child: AwnserWidget(
-                  label: item.label,
-                  isRight: item.isRight,
-                  isSelected: selectedAnswer == item,
-                  isConfirmed:
-                      widget.isConfirmed, // Passa o estado de confirmação
-                  onTap: () {},
-                ),
+              return AwnserWidget(
+                label: item.label,
+                isRight: item.isRight,
+                isSelected: widget.selectedAnswer == item,
+                isConfirmed: isConfirmed,
+                onTap: () => widget.onAnswerSelected(item),
               );
             }).toList(),
           ),
