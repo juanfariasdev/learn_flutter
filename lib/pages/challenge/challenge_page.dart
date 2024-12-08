@@ -72,6 +72,34 @@ class _ChallengePageState extends State<ChallengePage> {
     );
   }
 
+  // Função para exibir o diálogo de confirmação
+  Future<bool> _showExitConfirmation() async {
+    return await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Confirmar'),
+              content: Text('Você deseja sair do quiz?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false); // Não permite sair
+                  },
+                  child: Text('Cancelar'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true); // Permite sair
+                  },
+                  child: Text('Sim'),
+                ),
+              ],
+            );
+          },
+        ) ??
+        false;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -88,8 +116,10 @@ class _ChallengePageState extends State<ChallengePage> {
         if (widget.currentQuestionIndex > 0) {
           _previousQuestion();
           return false; // Impede que a página seja fechada
+        } else {
+          bool exit = await _showExitConfirmation();
+          return exit;
         }
-        return true; // Permite sair da página se estiver na primeira questão
       },
       child: Scaffold(
         appBar: PreferredSize(
