@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
 
@@ -19,37 +17,35 @@ class AwnserWidget extends StatelessWidget {
     required this.onTap,
   });
 
-  // Cores dinâmicas com base nos estados
-  Color get _SelectedColorCard {
-    if (isConfirmed) {
-      return isRight ? AppColors.lightGreen : AppColors.lightRed;
-    }
-    return isSelected ? AppColors.lightGrey : AppColors.white;
-  }
-
-  Color get _SelectedBorderCard {
-    if (isConfirmed) {
-      return isRight ? AppColors.green : AppColors.red;
-    }
-    return isSelected ? AppColors.grey : AppColors.border;
-  }
-
-  TextStyle get _SelectedTextStyle {
-    if (isConfirmed) {
-      return isRight ? AppTextStyles.bodyDarkGreen : AppTextStyles.bodyDarkRed;
-    }
-    return isSelected ? AppTextStyles.bodyBold : AppTextStyles.body;
-  }
-
-  IconData? get _SelectedIcon {
-    if (isConfirmed) {
-      return isRight ? Icons.check : Icons.close;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
+    // Definindo as cores, bordas, estilos de texto e ícones baseados nos estados
+    Color color = isConfirmed
+        ? (isSelected
+            ? (isRight ? AppColors.lightGreen : AppColors.lightRed)
+            : AppColors.white)
+        : (isSelected
+            ? const Color.fromARGB(255, 245, 245, 245)
+            : AppColors.white);
+
+    Color borderColor = isConfirmed
+        ? (isSelected
+            ? (isRight ? AppColors.green : AppColors.red)
+            : AppColors.border)
+        : (isSelected ? AppColors.grey : AppColors.border);
+
+    TextStyle textStyle = isConfirmed
+        ? (isSelected
+            ? (isRight
+                ? AppTextStyles.bodyDarkGreen
+                : AppTextStyles.bodyDarkRed)
+            : AppTextStyles.body)
+        : (isSelected ? AppTextStyles.bodyBold : AppTextStyles.body);
+
+    IconData? icon = isConfirmed && isSelected
+        ? (isRight ? Icons.check : Icons.close)
+        : null;
+
     return GestureDetector(
       onTap: isConfirmed
           ? null
@@ -57,29 +53,28 @@ class AwnserWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
-          color: _SelectedColorCard,
+          color: color,
           borderRadius: BorderRadius.circular(10),
-          border: Border.fromBorderSide(BorderSide(color: _SelectedBorderCard)),
+          border: Border.fromBorderSide(BorderSide(color: borderColor)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               label,
-              style: _SelectedTextStyle,
+              style: textStyle,
             ),
-            if (isConfirmed) // Mostra o ícone só se a "prova" estiver confirmada
+            if (icon !=
+                null) // Mostra o ícone só se a "prova" estiver confirmada e selecionada
               Container(
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: isConfirmed
-                      ? (isRight ? AppColors.green : AppColors.red)
-                      : AppColors.white,
+                  color: isRight ? AppColors.green : AppColors.red,
                   borderRadius: BorderRadius.circular(500),
                 ),
                 child: Icon(
-                  _SelectedIcon,
+                  icon,
                   size: 16,
                   color: AppColors.white,
                 ),
