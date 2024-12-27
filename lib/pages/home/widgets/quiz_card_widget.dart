@@ -16,6 +16,7 @@ class QuizCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final int totalProgress = quiz.topics.length;
     return GestureDetector(
       onTap: () {
         // Navega para a TopicPage ao clicar
@@ -87,14 +88,14 @@ class QuizCardWidget extends StatelessWidget {
                         SizedBox(
                           width: 40, // Um tamanho fixo para o texto
                           child: AutoSizeText(
-                            "${quiz.progress}/${quiz.totalProgress}",
+                            "${quiz.progress}/$totalProgress",
                             style: AppTextStyles.body11,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         ProgressIndicatorWidget(
                             progress: quiz.progress,
-                            totalProgress: quiz.totalProgress)
+                            totalProgress: quiz.topics.length)
                       ],
                     ),
                   ],

@@ -9,8 +9,7 @@ List<QuizModel> learningPath = [
   QuizModel(
     label: 'Fundamentos de Programação',
     icon: Icons.code,
-    progress: 0,
-    totalProgress: 1,
+    progress: 1,
     level: Level.facil,
     topics: [
       TopicModel(
@@ -69,7 +68,6 @@ List<QuizModel> learningPath = [
     label: 'Configuração do Ambiente de Desenvolvimento',
     icon: Icons.settings,
     progress: 0,
-    totalProgress: 1,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -95,7 +93,6 @@ List<QuizModel> learningPath = [
     label: 'Introdução ao Dart',
     icon: Icons.language,
     progress: 0,
-    totalProgress: 2,
     level: Level.facil,
     topics: [
       TopicModel(
@@ -119,7 +116,6 @@ List<QuizModel> learningPath = [
     label: 'Estrutura da Linguagem',
     icon: Icons.abc,
     progress: 1,
-    totalProgress: 2,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -138,7 +134,6 @@ List<QuizModel> learningPath = [
     label: 'Widgets Básicos',
     icon: Icons.widgets,
     progress: 2,
-    totalProgress: 5,
     level: Level.facil,
     topics: [
       TopicModel(
@@ -157,7 +152,6 @@ List<QuizModel> learningPath = [
     label: 'Layouts e Containers',
     icon: Icons.view_column,
     progress: 3,
-    totalProgress: 5,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -176,7 +170,6 @@ List<QuizModel> learningPath = [
     label: 'Gerenciamento de Estado',
     icon: Icons.stacked_bar_chart,
     progress: 2,
-    totalProgress: 4,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -195,7 +188,6 @@ List<QuizModel> learningPath = [
     label: 'Navegação e Rotas',
     icon: Icons.navigation,
     progress: 2,
-    totalProgress: 3,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -214,7 +206,6 @@ List<QuizModel> learningPath = [
     label: 'Interações e Gestos',
     icon: Icons.touch_app,
     progress: 3,
-    totalProgress: 4,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -233,7 +224,6 @@ List<QuizModel> learningPath = [
     label: 'Armazenamento Local',
     icon: Icons.storage,
     progress: 1,
-    totalProgress: 3,
     level: Level.facil,
     topics: [
       TopicModel(
@@ -252,7 +242,6 @@ List<QuizModel> learningPath = [
     label: 'Firebase e Integração de Backend',
     icon: Icons.cloud,
     progress: 0,
-    totalProgress: 3,
     level: Level.medio,
     topics: [
       TopicModel(
@@ -271,7 +260,6 @@ List<QuizModel> learningPath = [
     label: 'Animações e Transições',
     icon: Icons.animation,
     progress: 2,
-    totalProgress: 4,
     level: Level.dificil,
     topics: [
       TopicModel(
@@ -290,7 +278,6 @@ List<QuizModel> learningPath = [
     label: 'Testes e Debugging',
     icon: Icons.bug_report,
     progress: 1,
-    totalProgress: 3,
     level: Level.dificil,
     topics: [
       TopicModel(
@@ -309,7 +296,6 @@ List<QuizModel> learningPath = [
     label: 'Publicação do App',
     icon: Icons.publish,
     progress: 1,
-    totalProgress: 2,
     level: Level.dificil,
     topics: [
       TopicModel(
@@ -328,7 +314,6 @@ List<QuizModel> learningPath = [
     label: 'Boas Práticas de Código e Arquitetura',
     icon: Icons.build,
     progress: 0,
-    totalProgress: 2,
     level: Level.perito,
     topics: [
       TopicModel(
@@ -347,7 +332,6 @@ List<QuizModel> learningPath = [
     label: 'Otimização e Desempenho',
     icon: Icons.speed,
     progress: 0,
-    totalProgress: 2,
     level: Level.dificil,
     topics: [
       TopicModel(
@@ -366,7 +350,6 @@ List<QuizModel> learningPath = [
     label: 'Acessibilidade no Flutter',
     icon: Icons.accessible,
     progress: 0,
-    totalProgress: 2,
     level: Level.perito,
     topics: [
       TopicModel(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/api/quiz_api.dart';
 import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
+import 'package:learn_flutter/pages/home/home_controller.dart';
+import 'package:learn_flutter/pages/home/home_state.dart';
 import 'package:learn_flutter/pages/home/widgets/app_bar_widget.dart';
 import 'package:learn_flutter/pages/home/widgets/level_button_widget.dart';
 import 'package:learn_flutter/pages/home/widgets/quiz_card_widget.dart';
@@ -14,10 +15,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final controller = HomeController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUser();
+    controller.getQuizzes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(
+        user: controller.user!,
+      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -41,23 +53,30 @@ class _HomePageState extends State<HomePage> {
               padding:
                   EdgeInsets.symmetric(horizontal: AppConfig.mobilePadding),
               child: Center(
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: learningPath.map((item) {
-                    return QuizCardWidget(
-                      quiz: QuizModel(
-                        label: item.label,
-                        icon: item.icon,
-                        progress: item.progress,
-                        totalProgress: item.totalProgress,
-                        level: item.level,
-                        topics: item.topics,
+                child: controller.quizState == ApiState.success
+                    ? Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: (controller.quizzes != null &&
+                                controller.quizzes!.isNotEmpty)
+                            ? controller.quizzes!
+                                .map((item) => QuizCardWidget(
+                                      quiz: QuizModel(
+                                        label: item.label,
+                                        icon: item.icon,
+                                        progress: item.progress,
+                                        level: item.level,
+                                        topics: item.topics,
+                                      ),
+                                    ))
+                                .toList()
+                            : [],
+                      )
+                    : CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(AppColors.darkGreen),
                       ),
-                    );
-                  }).toList(),
-                ),
               ),
             ),
             SizedBox(

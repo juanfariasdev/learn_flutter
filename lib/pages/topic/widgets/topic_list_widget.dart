@@ -15,7 +15,7 @@ class TopicListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalProgress = topic.challenges.length; // Removido o `const`
+    final totalProgress = topic.challenges.length;
     final currentProgress = topic.challenges
         .where((question) =>
             question.selectedAnswer != null) // Exemplo: questões respondidas

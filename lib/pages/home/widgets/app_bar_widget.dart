@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/core.dart';
+import 'package:learn_flutter/models/user_model.dart';
 import 'package:learn_flutter/pages/home/widgets/score_card_widget.dart';
 
 class AppBarWidget extends PreferredSize {
-  AppBarWidget({super.key})
+  final UserModel user;
+  AppBarWidget({super.key, required this.user})
       : super(
           preferredSize: const Size.fromHeight(200),
           child: SizedBox(
@@ -28,7 +30,7 @@ class AppBarWidget extends PreferredSize {
                             style: AppTextStyles.subTitle,
                           ),
                           Text(
-                            'Juanfarias.dev',
+                            user.name,
                             style: AppTextStyles.titleBold,
                           ),
                         ],
@@ -40,8 +42,7 @@ class AppBarWidget extends PreferredSize {
                           color: Colors.grey,
                           borderRadius: BorderRadius.circular(100),
                           image: DecorationImage(
-                            image: const NetworkImage(
-                                "https://avatars.githubusercontent.com/u/77401614?v=4"),
+                            image: NetworkImage(user.photoUrl),
                             onError: (exception, stackTrace) {
                               // Aqui você pode tratar o erro, exibir um ícone de erro ou imagem padrão
                               print("Erro ao carregar imagem: $exception");
@@ -51,7 +52,7 @@ class AppBarWidget extends PreferredSize {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Image.network(
-                            "https://avatars.githubusercontent.com/u/77401614?v=4",
+                            user.photoUrl,
                             fit: BoxFit.cover,
                             loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) {
