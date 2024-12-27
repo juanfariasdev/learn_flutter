@@ -3,8 +3,9 @@ import 'package:learn_flutter/core/core.dart';
 import 'package:learn_flutter/pages/home/widgets/chart_widget.dart';
 
 class ScoreCardWidget extends StatelessWidget {
-  const ScoreCardWidget({super.key});
+  int progress;
 
+  ScoreCardWidget({super.key, required this.progress});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,11 @@ class ScoreCardWidget extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Expanded(flex: 2, child: ChartWidget()),
+              Expanded(
+                  flex: 2,
+                  child: ChartWidget(
+                    value: progress,
+                  )),
               Expanded(
                 flex: 5,
                 child: Padding(

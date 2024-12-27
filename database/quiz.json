@@ -86,7 +86,6 @@
     },
     {
         "label": "Configuração do Ambiente de Desenvolvimento",
-        "icon": "settings",
         "progress": 0,
         "level": "medio",
         "topics": [
@@ -113,7 +112,6 @@
     },
     {
         "label": "Introdução ao Dart",
-        "icon": "language",
         "progress": 0,
         "level": "facil",
         "topics": [
@@ -136,7 +134,6 @@
     },
     {
         "label": "Estrutura da Linguagem",
-        "icon": "abc",
         "progress": 1,
         "level": "medio",
         "topics": [
@@ -154,7 +151,6 @@
     },
     {
         "label": "Widgets Básicos",
-        "icon": "widgets",
         "progress": 2,
         "level": "facil",
         "topics": [
@@ -172,7 +168,6 @@
     },
     {
         "label": "Layouts e Containers",
-        "icon": "view_column",
         "progress": 3,
         "level": "medio",
         "topics": [
@@ -190,7 +185,6 @@
     },
     {
         "label": "Gerenciamento de Estado",
-        "icon": "stacked_bar_chart",
         "progress": 2,
         "level": "medio",
         "topics": [
@@ -208,7 +202,6 @@
     },
     {
         "label": "Navegação e Rotas",
-        "icon": "navigation",
         "progress": 2,
         "level": "medio",
         "topics": [
@@ -226,7 +219,6 @@
     },
     {
         "label": "Interações e Gestos",
-        "icon": "touch_app",
         "progress": 3,
         "level": "medio",
         "topics": [
@@ -244,7 +236,6 @@
     },
     {
         "label": "Armazenamento Local",
-        "icon": "storage",
         "progress": 1,
         "level": "facil",
         "topics": [
@@ -262,7 +253,6 @@
     },
     {
         "label": "Firebase e Integração de Backend",
-        "icon": "cloud",
         "progress": 0,
         "level": "medio",
         "topics": [
@@ -280,7 +270,6 @@
     },
     {
         "label": "Animações e Transições",
-        "icon": "animation",
         "progress": 2,
         "level": "dificil",
         "topics": [
@@ -298,7 +287,6 @@
     },
     {
         "label": "Testes e Debugging",
-        "icon": "bug_report",
         "progress": 1,
         "level": "dificil",
         "topics": [
@@ -316,7 +304,6 @@
     },
     {
         "label": "Publicação do App",
-        "icon": "publish",
         "progress": 1,
         "level": "dificil",
         "topics": [
@@ -334,7 +321,6 @@
     },
     {
         "label": "Boas Práticas de Código e Arquitetura",
-        "icon": "build",
         "progress": 0,
         "level": "perito",
         "topics": [
@@ -352,7 +338,6 @@
     },
     {
         "label": "Otimização e Desempenho",
-        "icon": "speed",
         "progress": 0,
         "level": "dificil",
         "topics": [

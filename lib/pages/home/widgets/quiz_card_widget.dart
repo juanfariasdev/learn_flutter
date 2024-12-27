@@ -69,16 +69,20 @@ class QuizCardWidget extends StatelessWidget {
                         Container(
                           width: 36,
                           height: 36,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            image: DecorationImage(
-                              image: NetworkImage(quiz.icon),
-                              onError: (exception, stackTrace) {
-                                // Aqui você pode tratar o erro, exibir um ícone de erro ou imagem padrão
-                                print("Erro ao carregar imagem: $exception");
-                              },
-                            ),
-                          ),
+                          decoration:
+                              (quiz.icon != null && quiz.icon!.isNotEmpty)
+                                  ? BoxDecoration(
+                                      color: Colors.transparent,
+                                      image: DecorationImage(
+                                        image: NetworkImage(quiz.icon!),
+                                        onError: (exception, stackTrace) {
+                                          // Aqui você pode tratar o erro, exibir um ícone de erro ou imagem padrão
+                                          print(
+                                              "Erro ao carregar imagem: $exception");
+                                        },
+                                      ),
+                                    )
+                                  : null,
                         ),
                         LevelButtonWidget(level: quiz.level),
                       ],

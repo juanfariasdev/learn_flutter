@@ -25,7 +25,7 @@ class QuizModel {
   final String id;
   final String label;
   final int progress;
-  final String icon;
+  final String? icon;
   final Level level;
   final List<TopicModel> topics;
 
