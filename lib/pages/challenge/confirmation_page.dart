@@ -126,7 +126,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                         size: 24,
                       ),
                       title: Text(
-                        question.title,
+                        "${index + 1}) ${question.title}",
                         style: TextStyle(
                             color: AppColors.black,
                             fontWeight: FontWeight.w500,
@@ -183,7 +183,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               );
             }),
             NextButtonWidget.green(
-              label: "Confirmar",
+              label: "Verificar respostas",
               onTap: () => _showConfirmationDialog(context),
             ),
           ],
