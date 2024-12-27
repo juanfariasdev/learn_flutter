@@ -22,36 +22,30 @@ class NextButtonWidget extends StatelessWidget {
 
   const NextButtonWidget.green({
     super.key,
-    required String label,
-    required VoidCallback onTap,
+    required this.label,
+    required this.onTap,
     this.isDisabled = false, // Permitir desabilitar
   })  : backgroundColor = AppColors.darkGreen,
         fontColor = AppColors.white,
-        borderColor = AppColors.green,
-        onTap = onTap,
-        label = label;
+        borderColor = AppColors.green;
 
   const NextButtonWidget.purple({
     super.key,
-    required String label,
-    required VoidCallback onTap,
+    required this.label,
+    required this.onTap,
     this.isDisabled = false, // Permitir desabilitar
   })  : backgroundColor = AppColors.purple,
         fontColor = AppColors.white,
-        borderColor = AppColors.green,
-        onTap = onTap,
-        label = label;
+        borderColor = AppColors.green;
 
   const NextButtonWidget.white({
     super.key,
-    required String label,
-    required VoidCallback onTap,
+    required this.label,
+    required this.onTap,
     this.isDisabled = false, // Permitir desabilitar
   })  : backgroundColor = AppColors.white,
         fontColor = AppColors.grey,
-        borderColor = AppColors.border,
-        onTap = onTap,
-        label = label;
+        borderColor = AppColors.border;
 
   @override
   Widget build(BuildContext context) {
