@@ -31,8 +31,37 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           appBar: controller.user != null
               ? AppBarWidget(user: controller.user!)
-              : AppBar(
-                  title: Text("Loading..."),
+              : PreferredSize(
+                  preferredSize: const Size.fromHeight(60),
+                  child: SafeArea(
+                    child: SizedBox(
+                      height: double.infinity,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppConfig.mobilePadding),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 3,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppColors.darkRed),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                "Carregando dados do usuário...",
+                                style: AppTextStyles.heading16,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -61,9 +90,23 @@ class _HomePageState extends State<HomePage> {
                       EdgeInsets.symmetric(horizontal: AppConfig.mobilePadding),
                   child: Center(
                     child: controller.quizState == ApiState.loading
-                        ? CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                AppColors.darkGreen),
+                        ? Row(
+                            children: [
+                              SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 3,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppColors.darkGreen),
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                "Carregando tópicos...",
+                                style: AppTextStyles.heading16,
+                              ),
+                            ],
                           )
                         : controller.quizState == ApiState.success &&
                                 controller.quizzes != null &&

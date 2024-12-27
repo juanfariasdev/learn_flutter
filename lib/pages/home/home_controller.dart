@@ -11,7 +11,10 @@ class HomeController extends ChangeNotifier {
   UserModel? user;
   List<QuizModel>? quizzes;
 
-  void getUser() {
+  void getUser() async {
+    userState = ApiState.loading;
+    await Future.delayed(Duration(seconds: 1));
+
     user = UserModel(
       name: 'Juanfarias.dev',
       photoUrl: 'https://avatars.githubusercontent.com/u/77401614?v=4',
