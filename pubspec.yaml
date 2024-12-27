@@ -24,6 +24,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - database/user.json
+    - database/quiz.json
     - assets/images/blocks.png
     - assets/images/check.png
     - assets/images/data.png

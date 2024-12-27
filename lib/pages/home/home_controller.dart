@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/api/quiz_api.dart';
+import 'package:learn_flutter/api/quiz.dart';
+import 'package:learn_flutter/api/user.dart';
 import 'package:learn_flutter/models/quiz_model.dart';
 import 'package:learn_flutter/models/user_model.dart';
 import 'package:learn_flutter/pages/home/home_state.dart';
@@ -13,12 +14,8 @@ class HomeController extends ChangeNotifier {
 
   void getUser() async {
     userState = ApiState.loading;
-    await Future.delayed(Duration(seconds: 1));
-
-    user = UserModel(
-      name: 'Juanfarias.dev',
-      photoUrl: 'https://avatars.githubusercontent.com/u/77401614?v=4',
-    );
+    UserApi userApi = UserApi();
+    user = await userApi.getMyUser();
     userState = ApiState.success;
     notifyListeners(); // Notifica mudanças no estado do usuário
   }
@@ -27,8 +24,8 @@ class HomeController extends ChangeNotifier {
     quizState = ApiState.loading;
     notifyListeners(); // Notifica que o estado está em carregamento
 
-    await Future.delayed(Duration(seconds: 1));
-    quizzes = learningPath;
+    QuizApi quizApi = QuizApi();
+    quizzes = await quizApi.getQuizzes();
     quizState = ApiState.success;
     notifyListeners(); // Notifica que o carregamento foi concluído
   }
