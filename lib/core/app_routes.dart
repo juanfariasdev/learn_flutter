@@ -15,35 +15,41 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        return MaterialPageRoute(builder: (_) => HomePage());
-      case topic:
-        final quiz =
-            settings.arguments as QuizModel; // Supondo que você passe o quiz
         return MaterialPageRoute(
-          builder: (_) => TopicPage(quiz: quiz),
+          builder: (_) => HomePage(),
+          settings: settings, // Adiciona o RouteSettings
+        );
+      case topic:
+        final quiz = settings.arguments as QuizModel?;
+        return MaterialPageRoute(
+          builder: (_) => TopicPage(quiz: quiz!),
+          settings: settings, // Adiciona o RouteSettings
         );
       case challenge:
         final args = settings.arguments as Map?;
         return MaterialPageRoute(
           builder: (_) => ChallengePage(
-            questions: args?['questions'],
+            questions: args?['questions'] ?? [],
             answers: args?['answers'],
-            currentQuestionIndex: args?['currentQuestionIndex'],
+            currentQuestionIndex: args?['currentQuestionIndex'] ?? 0,
           ),
+          settings: settings, // Adiciona o RouteSettings
         );
       case confirmation:
         final args = settings.arguments as Map?;
         return MaterialPageRoute(
           builder: (_) => ConfirmationPage(
-            questions: args?['questions'],
-            answers: args?['answers'],
+            questions: args?['questions'] ?? [],
+            answers: args?['answers'] ?? [],
           ),
+          settings: settings, // Adiciona o RouteSettings
         );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(child: Text('Page not found')),
           ),
+          settings: settings, // Adiciona o RouteSettings
         );
     }
   }

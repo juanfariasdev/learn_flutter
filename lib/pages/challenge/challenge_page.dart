@@ -89,7 +89,13 @@ class _ChallengePageState extends State<ChallengePage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop(true); // Permite sair
+                    Navigator.popUntil(context, (route) {
+                      print('Tipo da Rota: ${route.runtimeType}');
+                      if (route.settings.name == AppRoutes.topic) {
+                        return true; // Parar na rota correta
+                      }
+                      return false; // Continuar verificando
+                    });
                   },
                   child: Text('Sim'),
                 ),
