@@ -182,10 +182,30 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
                 ],
               );
             }),
-            NextButtonWidget.green(
-              label: "Verificar respostas",
-              onTap: () => _showConfirmationDialog(context),
-            ),
+            Row(
+              children: [
+                if (!_isConfirmed) ...[
+                  NextButtonWidget.green(
+                    label: "Verificar respostas",
+                    onTap: () => _showConfirmationDialog(context),
+                  ),
+                  SizedBox(width: 10)
+                ] else ...[
+                  NextButtonWidget.white(
+                    label: "Sair",
+                    onTap: () => {
+                      Navigator.popUntil(context, (route) {
+                        print('Tipo da Rota: ${route.runtimeType}');
+                        if (route.settings.name == AppRoutes.topic) {
+                          return true; // Parar na rota correta
+                        }
+                        return false; // Continuar verificando
+                      })
+                    },
+                  ),
+                ]
+              ],
+            )
           ],
         ),
       ),
